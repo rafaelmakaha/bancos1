@@ -85,8 +85,12 @@ def inserir(prop):
 
 def exibir(prop):
     limpa_tela()
-    print(prop)
-    input()
+    for x in prop["proprietarios"]:
+        print("----------------------")
+        print("Cpf: ", x["cpf"])
+        print("Nome: ", x["nome"])
+        print("Carros: " , ','.join(carro for carro in x["carros"]))
+    input("\nPressione ENTER para retornar ao menu...")
 
 
 def verifica_arquivo(prop):
