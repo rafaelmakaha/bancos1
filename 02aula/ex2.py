@@ -64,38 +64,51 @@ def inserir(prop):
     cpf = inserir_cpf(prop)
     carros = inserir_carros()
 
-    teste = Proprietario()
-    teste.nome = nome
-    teste.cpf = cpf
-    teste.qnt = len(carros)
-    teste.carros = carros
+    novo = Proprietario()
+    novo.nome = nome
+    novo.cpf = cpf
+    novo.qnt = len(carros)
+    novo.carros = carros
 
-    prop.append(teste)
-    teste = json.dumps(teste.__dict__)
+    prop.append(novo)
+    novo = json.dumps(novo.__dict__)
 
     with open("data.json", "a") as f:
-        json.dump(teste, f)
+        json.dump(novo, f, indent=4)
         f.write("\n")
 
 def exibir(prop):
     limpa_tela()
-    print ("oi2")
+
 
 def verifica_arquivo(prop):
+    print(prop)
     if os.path.isfile('./data.json'):
-        # with open("data.json","r") as f:
-        #     for line in f:
-        print("ok")
+        with open("data.json","r") as f:
+            data = json.loads(f.read())
+            for proprietario in data:
+                print(proprietario["nome"])
+                novo = Proprietario()
+                # novo.nome = data.nome
+                # print(data)
+
     else:
-        open("data.json", "w")
+        prop["proprietarios"] = []
+        with open("data.json", "w") as f:
+            json.dump(prop,f)
 
 def limpa_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def main():
     prop = []
+    # prop = {}
+    # prop["proprietarios"] = []
+
+    # prop["proprietarios"].append({
+    #     'nome': 'teste'
+    # })
     opcao = 1
-    print(len(prop))
     verifica_arquivo(prop)
 
     while(opcao > 0):
