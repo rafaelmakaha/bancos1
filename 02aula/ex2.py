@@ -14,8 +14,8 @@ import pickle
 # Classes area
 class Proprietario(object):
     def __init__(self):
-        self.nome = ""
         self.cpf = ""
+        self.nome = ""
         self.qnt = ""
         self.carros = []
 
@@ -76,6 +76,8 @@ def inserir(prop):
     novo = vars(novo) 
 
     prop["proprietarios"].append(novo)
+
+    prop["proprietarios"] = sorted(prop["proprietarios"], key=lambda x: x["cpf"])
 
     with open("data.json", "w") as f:
         json.dump(prop, f, indent=4)
