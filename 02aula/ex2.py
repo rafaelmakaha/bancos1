@@ -31,15 +31,19 @@ def menu():
 def inserir_cpf(prop):
     cpf = int(input("Insira o CPF do proprietário: "))
     valido = False
-    if len(prop) == 0:
+    print(prop)
+    print(prop["proprietarios"][0][:])
+    if len(prop["proprietarios"]) == 0:
         valido = True
     while valido == False:
-        for item in prop:
-            if item.cpf == cpf:
+        for item in prop["proprietarios"]:
+            if item["cpf"] == cpf:
+                print("já existe")
                 valido = False
+                cpf = int(input("CPF já cadastrado, favor inserir o CPF correto: "))
             else:
+                print("entrei2")
                 valido = True
-        cpf = int(input("CPF já cadastrado, favor inserir o CPF correto: "))
     
     return cpf
 
@@ -56,13 +60,13 @@ def inserir_carros():
 def inserir(prop):
     limpa_tela()
 
-    nome = ""
-    cpf = 0
-    carros = []
+    nome = "teste"
+    cpf = 123
+    carros = ['gol']
 
-    nome = str(input("Insira o nome do proprietário: "))
-    cpf = inserir_cpf(prop)
-    carros = inserir_carros()
+    # nome = str(input("Insira o nome do proprietário: "))
+    # cpf = inserir_cpf(prop)
+    # carros = inserir_carros()
 
     novo = Proprietario()
     novo.nome = nome
@@ -70,46 +74,59 @@ def inserir(prop):
     novo.qnt = len(carros)
     novo.carros = carros
 
-    prop.append(novo)
-    novo = json.dumps(novo.__dict__)
+    print(novo)
+    # print(vars(novo))
+    # novo = json.dumps(novo.__dict__)
+    novo = vars(novo)
+    print(novo)
 
-    with open("data.json", "a") as f:
-        json.dump(novo, f, indent=4)
+    prop["proprietarios"].append(novo)
+    print(prop)
+
+    with open("data.json", "w") as f:
+        json.dump(prop, f, indent=4)
         f.write("\n")
 
 def exibir(prop):
     limpa_tela()
+    print(prop)
+    input()
 
 
 def verifica_arquivo(prop):
-    print(prop)
     if os.path.isfile('./data.json'):
         with open("data.json","r") as f:
-            data = json.loads(f.read())
-            for proprietario in data:
-                print(proprietario["nome"])
-                novo = Proprietario()
-                # novo.nome = data.nome
-                # print(data)
+            prop = json.load(f)
+            print(prop)
+            # for x in data["proprietarios"]:
+            #     prop["proprietarios"].append(x)
+        # print(prop["proprietarios"][0]["nome"])
 
     else:
-        prop["proprietarios"] = []
         with open("data.json", "w") as f:
             json.dump(prop,f)
+
+    return prop
 
 def limpa_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def main():
-    prop = []
-    # prop = {}
-    # prop["proprietarios"] = []
+    # prop = []
+    prop = {}
+    prop["proprietarios"] = []
 
     # prop["proprietarios"].append({
-    #     'nome': 'teste'
+    #     'nome': 'teste',
+    #     'cpf': 123,
+    #     'carros':['carrinho','teste']
     # })
+    # with open("data.json", "w") as f:
+    #     json.dump(prop, f, indent=4)
+    #     f.write("\n")
+
     opcao = 1
-    verifica_arquivo(prop)
+    prop = verifica_arquivo(prop)
 
     while(opcao > 0):
         menu()
