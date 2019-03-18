@@ -9,7 +9,6 @@
 # Imports area
 import os
 import json
-import pickle
 
 # Classes area
 class Proprietario(object):
