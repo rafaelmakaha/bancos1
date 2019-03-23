@@ -1,0 +1,31 @@
+{
+    "proprietarios": [
+        {
+            "cpf": 122,
+            "nome": "ana",
+            "qnt": 3,
+            "carros": [
+                "siena",
+                "gol",
+                "uno"
+            ]
+        },
+        {
+            "cpf": 123,
+            "nome": "carlos",
+            "qnt": 2,
+            "carros": [
+                "gol",
+                "palio"
+            ]
+        },
+        {
+            "cpf": 234,
+            "nome": "jose",
+            "qnt": 1,
+            "carros": [
+                "gol"
+            ]
+        }
+    ]
+}
