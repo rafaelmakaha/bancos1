@@ -2,8 +2,8 @@
 
 ## Entidades
 
-- Cadastrado(*cpf*, nome, endereco, telefone)
-- Parente(parentesco, nome, *cpf*)
+- Cadastrado(cpf, nome, endereco, telefone)
+- Parente(parentesco, nome, cpf)
 
 ## Relacionamentos
 
