@@ -13,4 +13,4 @@
     
     **Cardinalidade**: n:n
 
-
+![DER](aula4ex02.JPG)
