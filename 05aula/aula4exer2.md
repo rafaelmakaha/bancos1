@@ -13,6 +13,8 @@
     
     **Cardinalidade**: n:m
 
+## Diagrama Entidade-Relacionamento
+
 ![DER](aula5ex02.JPG)
 
 ## Diagrama de Esquemas
