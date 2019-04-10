@@ -2,28 +2,29 @@
 
 ## Entidades
 
-- RECEITA (<u>idReceita</u>, crm, paciente)
+- RECEITA (<u>idReceita</u>, descricao, crm, data, cpf)
 - MEDICO (<u>crm</u>, nome, especialidade)
-- PACEINTE (<u>cpf</u>, nome, idade, sexo, {telefones}, endereco)
+- PACEINTE (<u>cpf</u>, nome, idade, sexo, {telefones}, cep, estado, cidade, bairro, complemento)
+- CONSULTA (<u>crm</u>, <u>data</u>, <u>cpf</u>)
 
 ## Relacionamentos
 
-- RECEITA possui MEDICO
+- MEDICO consulta PACIENTE
 
-    Uma RECEITA possui um MEDICO e um MEDICO cria uma RECEITA
+    Um MEDICO consulta um PACIENTE e um PACIENTE é consultado por um medico.
     
-    **Cardinalidade**: 1:1
+    **Cardinalidade**: n:m
 
-- RECEITA possui PACEINTE
+- CONSULTA gera RECEITA
 
-    Uma RECEITA possui um PACIENTE e um PACIENTE recebe uma RECEITA
+    Uma CONSULTA pode gerar uma ou várias RECEITAs e uma RECEITA é gerada por uma CONSULTA.
     
-    **Cardinalidade**: 1:1
+    **Cardinalidade**: 1:n
 
 
 ## Diagrama Entidade-Relacionamento
 
-![DER](DER.JPG)
+![DER](DER.PNG)
 
 ## Diagrama de Relacionamento
 
@@ -31,4 +32,4 @@
 
 ## Diagrama Lógico
 
-![Diagrama](DiagramaER.PNG)
+![Logico](logico.PNG)
