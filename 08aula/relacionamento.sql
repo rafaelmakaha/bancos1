@@ -1,62 +1,51 @@
 /* logico: */
-CREATE TABLE MEDICO (
-    crm INT PRIMARY KEY,
-    nome VARCHAR(180),
-    especialidade VARCHAR(180)
+MEDICO (
+    crm numérico NÃO NULO,
+    nome literal(180) NÃO NULO,
+    especialidade literal(180) NÃO NULO,
+restrição MEDICO_PK de chave primária(crm)
 );
 
-CREATE TABLE PACIENTE (
-    cpf NUMERIC(11) PRIMARY KEY,
-    nome VARCHAR(180),
-    idade INT,
+PACIENTE (
+    cpf numérico(11) NÃO NULO,
+    nome literal(180) NÃO NULO,
+    idade numérico,
     sexo ENUM("M","F"),
-    cidade VARCHAR(180),
-    bairro VARCHAR(180),
-    estado VARCHAR(180),
-    cep INT,
-    complemento VARCHAR(180)
+    cidade literal(180),
+    bairro literal(180),
+    estado literal(180),
+    cep numérico,
+    complemento literal(180),
+restrição PACIENTE_PK de chave primária(cpf)
 );
 
-CREATE TABLE telefones (
-    idTelefone INT NOT NULL PRIMARY KEY,
-    telefones INT,
-    cpf NUMERIC(11)
+telefones (
+    idTelefone numérico NÃO NULO,
+    telefones numérico,
+    cpf numérico(11),
+restrição telefones_pk de chave primária(idTelefone),
+restrição telefones_PACEINTE_FK de chave estrangeira(cpf)
+    que referencia PACIENTE(cpf)
 );
 
-CREATE TABLE CONSULTA (
-    data DATETIME,
+CONSULTA (
+    data data,
+    cpf numérico(11),
+    crm numérico,
+restrição CONSULTA_PK de chave primária (data, crm, cpf),
+restrição CONSULTA_PACIENTE_FK de chave estrangeira(cpf)
+    que referencia PACIENTE(cpf),
+restrição de CONSULTA_MEDICO_FK de chave estrangeira(crm)
+    que referencia MEDICO(crm)
+);
+
+RECEITA (
+    idReceita numérico NÃO NULO,
+    descricao literal(180) NÃO NULO,
+    data data NÃO NULO,
+    crm numérico,
     cpf NUMERIC(11),
-    crm INT,
-    PRIMARY KEY (data, crm, cpf)
+restrição RECEITA_PK de chave primária (idReceita),
+restrição RECEITA_CONSULTA_FK de chave estrangeira(data, crm, cpf)
+    que referencia CONSULTA (data, crm, cpf)
 );
-
-CREATE TABLE RECEITA (
-    idReceita INT PRIMARY KEY,
-    descricao VARCHAR(180),
-    data DATETIME,
-    crm INT,
-    cpf NUMERIC(11)
-    ADD CONSTRAINT RECEITA_CONSULTA_FK
-    FOREIGN KEY (crm, data, cpf)
-    REFERENCES CONSULTA (crm, data, cpf)
-);
- 
-ALTER TABLE RECEITA 
-    ON DELETE CASCADE;
- 
-ALTER TABLE PACIENTE ADD CONSTRAINT FK_PACIENTE_2
-    FOREIGN KEY (telefones)
-    REFERENCES telefones (idTelefone)
-    ON DELETE NO ACTION;
- 
-ALTER TABLE CONSULTA ADD CONSTRAINT FK_CONSULTA_2
-    FOREIGN KEY (cpf)
-    REFERENCES PACIENTE (cpf);
- 
-ALTER TABLE CONSULTA ADD CONSTRAINT FK_CONSULTA_3
-    FOREIGN KEY (crm)
-    REFERENCES MEDICO (crm);
- 
-ALTER TABLE telefones ADD CONSTRAINT FK_telefones_2
-    FOREIGN KEY (cpf)
-    REFERENCES PACIENTE (cpf);
