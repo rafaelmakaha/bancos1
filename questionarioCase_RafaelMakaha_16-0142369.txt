@@ -1,0 +1,17 @@
+1) A ferramenta (software) brModelo, 
+utilizada na disciplina, é uma Ferramenta CASE?
+
+O brModelo é sim uma Ferramenta CASE, pois auxilia na
+modelagem de bancos de dados e na construção de 
+um software que possua Banco de Dados. 
+
+2) Com base em seus estudos sobre as duas videoaulas, 
+e outros materiais que você pode se sentir à vontade 
+em consultar após o estudo das duas videoaulas indicadas 
+nesta atividade, justifique a sua resposta a pergunta anterior (número 1)?
+
+A ferramenta brModelo auxilia na modelagem de dados de um
+problema de banco de dados. Ele participa do processo de 
+criação de um software que tenha, em sua constituição,
+um banco de dados e, por meio do brModelo, a criação de 
+modelagem dos dados é facilitada.
