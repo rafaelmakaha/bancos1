@@ -1,5 +1,9 @@
 /* Lógico: */
 
+CREATE DATABASE aula4Extra1;
+
+USE aula4Extra1;
+
 CREATE TABLE DEPARTAMENTO (
     codDepartamento INTEGER(8),
     nome VARCHAR(50),
