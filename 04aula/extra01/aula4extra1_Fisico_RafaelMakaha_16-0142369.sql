@@ -5,25 +5,26 @@ CREATE DATABASE aula4Extra1;
 USE aula4Extra1;
 
 CREATE TABLE DEPARTAMENTO (
-    codDepartamento INTEGER(8),
-    nome VARCHAR(50),
-    area VARCHAR(50)
+    codDepartamento INTEGER(8) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    area VARCHAR(50) NOT NULL
     CONSTRAINT PK_DEPARTAMENTO PRIMARY KEY (codDepartamento)
 );
 
 CREATE TABLE CURSO (
-    codCurso INTEGER(8),
-    nome VARCHAR(50),
-    codDepartamento INTEGER(8)
+    codCurso INTEGER(8) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    creditoTotal INT(3) NOT NULL,
+    codDepartamento INTEGER(8) NOT NULL
     CONSTRAINT PK_CURSO PRIMARY KEY (codCurso),
     CONSTRAINT FK_CURSO_DEPARTAMENTO FOREIGN KEY (codDepartamento) REFERENCES DEPARTAMENTO(codDepartamento)
 );
 
 CREATE TABLE DISCIPLINA (
-    codDisciplina INTEGER(8),
-    nome VARCHAR(50),
-    credito INTEGER(3),
-    codCurso INTEGER(8)
+    codDisciplina INTEGER(8) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    credito INTEGER(3) NOT NULL,
+    codCurso INTEGER(8) NOT NULL
     CONSTRAINT PK_DISCIPLINA PRIMARY KEY (codDisciplina),
     CONSTRAINT FK_DISCIPLINA_CURSO FOREIGN KEY (codCurso) REFERENCES CURSO (codCurso)
 );
